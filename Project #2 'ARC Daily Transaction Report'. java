@@ -1,0 +1,191 @@
+import java.io.*;
+import java.util.Scanner;
+// CIS 2110 Project #2
+// Java Program Listing & Sample Run 
+// Jason Kelly
+// 11/30/2019
+
+public class Project2
+{
+   
+   public static void main(String args[]) throws IOException
+   {
+      TransactionReport transRpt;
+      transRpt = new TransactionReport();
+      transRpt.appMain();
+   
+   }
+
+}
+
+class TransactionReport
+{
+   //Inputs
+   int transNumber;
+   String date;
+   String storeLocation;
+   float taxRate = 0;
+   float retailAmt;
+   Scanner stdin;
+   //Outputs
+   int discountFlag;
+   float discountAmt;
+   float transAmt;
+   float transCounter;
+   Scanner stdin;//Look into this ore
+   float lowTransAmt = 99999; 
+   float totalDiscountAmt;
+   float transAmtTotal;
+   float retailAmtTotal;
+   float averageTransAmt;
+   
+
+   public void appMain() throws IOException
+   {
+      System.out.println("You are in appMain");
+      stdin = new Scanner(System.in);
+      InitializeVariables();
+      GetTransBasics();
+      HeaderReportOut();
+      GetTransNumber();
+
+   void outHeader()
+   {
+      
+      system.out.println("Solution for Project #2");
+      system.out.println("ARC Daily Transaction ReportARC Daily Transaction Report");
+      system.out.println("By Jason Kelly");
+     
+   }
+    
+
+   while(transNumber!=0)
+   {
+      System.out.println("You are in the while!!!");
+      ProcessTrans();
+      TransReportOut();   
+      GetTransNumber();
+            
+    }
+
+      DetermineAverageTransAmt();
+      FinalReportOut();
+   }
+   void initMain()
+   {
+      transNumber = -1;  
+      discountAmt = 0; 
+      date = "dd/mm/yyyy";
+      storeLocation = "Unassigned";
+      lowTransAmt = 99999;   
+      taxRate = 0;   
+      discountFlag = 0;    
+      totalDiscountAmt = 0;
+      transAmt = 0;
+      transAmtTotal = 0;
+      retailAmt = 0;
+      retailAmtTotal = 0;
+      averageTransAmt = 0;
+      transCounter = 0;
+   }
+
+   void detailInput() throws IOException
+   {
+      System.out.println("Please input the store Location: ");
+      storeLocation = stdin.nextLine();  
+      System.out.println("The store location is: " + storeLocation);
+      System.out.println("Please input the date: ");
+      date = stdin.nextLine(); 
+      System.out.println("The date is: " + date);
+      System.out.println("Please input the Tax Rate: ");
+      taxRate = stdin.nextLine(); 
+      System.out.println("The Tax Rate is: " + taxRate);
+   }
+   
+   void HeaderReportOut()
+   {
+      System.out.println("The store location is: " + storeLoaction);
+      System.out.println("The date is: " + date);
+      System.out.println("The Tax Rate is: " + taxRate);
+   }
+
+   void GetTransNumber()
+   {
+      System.out.print("Please input the Transaction Number: ");
+      transNumber = stdin.nextInt();  
+      System.out.println("The TransactionNumber is: " + transNumber);
+   }
+
+   void  ProcessTrans()
+   {
+   System.out.println("You are in the ProcessTrans module.");
+         //ln 179
+      GetRetailAmt();
+      DetermineDiscount();
+      DetermineTransAmt();
+      DetermineLowTransAmt();
+      UpdateTransAmtTotal();
+      UpdateRetailAmtTotal();
+      UpdateTransCounter();
+   }
+
+   void GetRetailAmt()
+   {
+      System.out.println("Please input the Retail Amount: ");
+      storeLocation = stdin.nextLine(); 
+      System.out.println("The Retail Amount is" + retailAmt);
+   }
+
+
+   void DetermineDiscount()
+   {
+      if( retailAmt >1500 )
+      {
+      discountAmt = retailAmt * 0.05;
+      discountFlag = "1";
+      totalDiscountAmt = totalDiscountAmt + discountAmount;
+	   }
+	   else
+      {
+      discountAmt = 0;
+      discountFlag = "0";
+      }
+      System.out.println("The Discount Amount is" + discountAmt);
+   }
+   void DetermineTransAmt()
+   {
+      if (discountFlag = 1)
+      {
+         transAmt=(retailAmt-discountAmt)*( 1 + (taxRate / 100));
+      }
+      else
+      {
+         transAmt = (retailAmt *( 1 + (taxRate / 100) ));
+      }
+   }
+
+   void DetermineLowTransAmt()
+   {
+      if ( transAmt < lowTransAmt );
+      {
+      lowTransAmt = tranAmt;
+      lowTransAmtNumber = transNumber;
+      }
+   }
+
+
+
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
